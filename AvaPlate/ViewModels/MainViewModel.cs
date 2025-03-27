@@ -1,6 +1,8 @@
-﻿namespace AvaPlate.ViewModels;
+﻿using System;
 
-public class MainWindowViewModel : ViewModelBase
+namespace AvaPlate.ViewModels;
+
+public class MainViewModel : ViewModelBase
 {
     public string Greeting { get; } = "苏轼\n清风徐来，水波不兴。" +
                                       "举酒属客，诵明月之诗，歌窈窕之章。少焉，" +

@@ -16,6 +16,7 @@
         <FluentTheme />
         <Style Selector="Window">
             <Setter Property="FontFamily" Value="{StaticResource LxgwWenKaiBold}" />
+            <Setter Property="FontSize" Value="16" />
         </Style>
     </Application.Styles>
 </Application>
