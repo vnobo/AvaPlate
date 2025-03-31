@@ -30,14 +30,14 @@ public class App : Application
         // 从 collection 提供的 IServiceCollection 中创建包含服务的 ServiceProvider
         var services = collection.BuildServiceProvider();
 
-        var vm = services.GetRequiredService<MainViewModel>();
+        var mv = services.GetRequiredService<MainWindow>();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
-            desktop.MainWindow = new MainWindow(vm);
+            desktop.MainWindow = mv;
         }
 
         base.OnFrameworkInitializationCompleted();
