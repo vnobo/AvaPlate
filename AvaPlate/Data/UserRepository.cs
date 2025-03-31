@@ -7,23 +7,12 @@ using Microsoft.Extensions.Logging;
 
 namespace AvaPlate.Data;
 
-public class UserRepository(ILogger<UserRepository> logger)
+public class UserRepository(SecurityContext securityContext)
 {
-    private readonly ILogger _logger = logger;
-    private SecurityContext database;
-
-    private void Init()
-    {
-        if (database is not null)
-            return;
-        // Get an absolute path to the database file
-        database = new SecurityContext();
-    }
+    private readonly SecurityContext _database = securityContext;
 
     public async Task<List<User>> ListAsync()
     {
-        Init();
-
-        return await database.Users.ToListAsync();
+        return await _database.Users.ToListAsync();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using System;
+using Avalonia.Logging;
 
 namespace AvaPlate;
 
@@ -17,5 +18,5 @@ internal static class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
-            .LogToTrace();
+            .LogToTrace(LogEventLevel.Debug);
 }

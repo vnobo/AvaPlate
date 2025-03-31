@@ -9,13 +9,13 @@ namespace AvaPlate.Data;
 public class SecurityContext : DbContext
 {
     public DbSet<User> Users { get; set; }
-    public string DbPath { get; }
+    private string DbPath { get; }
     
     public SecurityContext()
     {
         const Environment.SpecialFolder folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(path, "security.db3");
+        DbPath = System.IO.Path.Join(path, "Security.db3");
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder options)

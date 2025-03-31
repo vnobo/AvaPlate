@@ -1,9 +1,12 @@
 ﻿using System;
+using AvaPlate.Data;
 
 namespace AvaPlate.ViewModels;
 
-public class MainViewModel : ViewModelBase
+public class MainViewModel(UserRepository userRepository) : ViewModelBase
 {
+    private readonly UserRepository _userRepository = userRepository;
+
     public string Greeting { get; } = "苏轼\n清风徐来，水波不兴。" +
                                       "举酒属客，诵明月之诗，歌窈窕之章。少焉，" +
                                       "月出於东山之上，徘徊於斗牛之间。白露横江，" +
