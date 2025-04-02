@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using AvaPlate.Models;
@@ -9,21 +9,19 @@ namespace AvaPlate.Data;
 public class SecurityContext : DbContext
 {
     public DbSet<User> Users { get; set; }
-    private string DbPath { get; }
-    
-    public SecurityContext()
-    {
-        const Environment.SpecialFolder folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(path, "Security.db3");
-    }
-    
+
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}")
+    {
+        if (!Directory.Exists(Constants.AppDirectory))
+        {
+            Directory.CreateDirectory(Constants.AppDirectory);
+        }
+        options.UseSqlite(Constants.DatabasePath)
             .EnableDetailedErrors()
             .EnableSensitiveDataLogging()
             .EnableServiceProviderCaching();
-    
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>()
@@ -31,5 +29,4 @@ public class SecurityContext : DbContext
             .HasConversion(v => v!.ToJsonString(Constants.JsonSerializerOptions),
                 v => JsonSerializer.Deserialize<JsonNode>(v, Constants.JsonSerializerOptions));
     }
-
 }

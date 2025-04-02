@@ -4,7 +4,7 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using AvaPlate.Utils;
+using AvaPlate.Utilities;
 using AvaPlate.ViewModels;
 using AvaPlate.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +25,6 @@ public class App : Application
         collection.RegisterServices();
         collection.RegisterViews();
         collection.RegisterViewModels();
-        collection.AddCommonServices();
 
         // 从 collection 提供的 IServiceCollection 中创建包含服务的 ServiceProvider
         var services = collection.BuildServiceProvider();

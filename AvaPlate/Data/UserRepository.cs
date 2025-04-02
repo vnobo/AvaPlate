@@ -9,10 +9,19 @@ namespace AvaPlate.Data;
 
 public class UserRepository(SecurityContext securityContext)
 {
-    private readonly SecurityContext _database = securityContext;
+    private bool _hasBeenInitialized;
+
+    private async Task Init()
+    {
+        if (_hasBeenInitialized)
+            return;
+        await securityContext.Database.EnsureCreatedAsync();
+        _hasBeenInitialized = true;
+    }
 
     public async Task<List<User>> ListAsync()
     {
-        return await _database.Users.ToListAsync();
+        await Init();
+        return await securityContext.Users.ToListAsync();
     }
 }

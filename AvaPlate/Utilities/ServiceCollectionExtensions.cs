@@ -1,23 +1,18 @@
 ﻿using AvaPlate.Data;
+using AvaPlate.Services;
 using AvaPlate.ViewModels;
 using AvaPlate.Views;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
-namespace AvaPlate.Utils;
+namespace AvaPlate.Utilities;
 
 public static class ServiceCollectionExtensions
 {
-    public static void AddCommonServices(this IServiceCollection collection)
-    {
-        collection.AddSingleton<UserRepository>();
-    }
-
-
     public static void RegisterServices(this IServiceCollection collection)
     {
         collection.AddTransient<SecurityContext>();
+        collection.AddSingleton<UserRepository>();
+        collection.AddSingleton<ModalErrorHandler>();
     }
 
     public static void RegisterViewModels(this IServiceCollection collection)

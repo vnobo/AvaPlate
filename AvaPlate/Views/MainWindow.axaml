@@ -8,9 +8,19 @@
         x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="AvaloniaApp">
-    <TextBlock
-        Text="{Binding Greeting}"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center" />
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.65" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
 
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                Command="{Binding RefreshCommand}" Content="刷新">
+        </Button>
+    </Panel>
 </Window>
