@@ -1,8 +1,7 @@
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
-using System.Linq;
 using Avalonia.Markup.Xaml;
 using AvaPlate.Utilities;
 using AvaPlate.ViewModels;
@@ -29,6 +28,7 @@ public class App : Application
         // 从 collection 提供的 IServiceCollection 中创建包含服务的 ServiceProvider
         var services = collection.BuildServiceProvider();
 
+        var vm = services.GetRequiredService<MainViewModel>();
         var mv = services.GetRequiredService<MainWindow>();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -36,6 +36,7 @@ public class App : Application
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
+            mv.DataContext = vm;
             desktop.MainWindow = mv;
         }
 

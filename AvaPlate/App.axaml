@@ -14,6 +14,7 @@
     </Application.DataTemplates>
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://AvaloniaApp/Resources/Icons.axaml" />
         <Style Selector="Window">
             <Setter Property="FontFamily" Value="{StaticResource LxgwWenKaiBold}" />
             <Setter Property="FontSize" Value="16" />
