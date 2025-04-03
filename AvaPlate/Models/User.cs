@@ -2,18 +2,22 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Nodes;
+using Microsoft.EntityFrameworkCore;
 
 namespace AvaPlate.Models;
 
 /// <summary>
 /// 系统用户实体类
 /// </summary>
+[Index(nameof(Code), IsUnique = true)]
 [Table("sys_users")]
 public class User
 {
     /// <summary>
     /// 用户ID（主键）
     /// </summary>
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     /// <summary>
@@ -28,6 +32,7 @@ public class User
     /// 用户名（登录账号）
     /// </summary>
     [Required(ErrorMessage = "用户名不能为空")]
+    [Column(TypeName = "varchar(64)")]
     [MaxLength(256, ErrorMessage = "用户名长度不能超过256个字符")]
     public required string Username { get; set; }
 
@@ -35,6 +40,7 @@ public class User
     /// 密码（加密存储）
     /// </summary>
     [Required(ErrorMessage = "密码不能为空")]
+    [Column(TypeName = "varchar(1024)")]
     [MaxLength(1024, ErrorMessage = "密码长度不能超过1024个字符")]
     public required string Password { get; set; }
 
@@ -47,12 +53,14 @@ public class User
     /// 用户真实姓名
     /// </summary>
     [MaxLength(64, ErrorMessage = "姓名长度不能超过64个字符")]
+    [Column(TypeName = "varchar(64)")]
     public string? Name { get; set; }
 
     /// <summary>
     /// 用户昵称
     /// </summary>
     [MaxLength(64, ErrorMessage = "昵称长度不能超过64个字符")]
+    [Column(TypeName = "varchar(64)")]
     public string? Nickname { get; set; }
 
     /// <summary>
@@ -60,6 +68,7 @@ public class User
     /// </summary>
     [EmailAddress(ErrorMessage = "邮箱格式不正确")]
     [MaxLength(256, ErrorMessage = "邮箱长度不能超过256个字符")]
+    [Column(TypeName = "varchar(256)")]
     public string? Email { get; set; }
 
     /// <summary>
@@ -67,6 +76,7 @@ public class User
     /// </summary>
     [Phone(ErrorMessage = "电话格式不正确")]
     [MaxLength(20, ErrorMessage = "电话长度不能超过20个字符")]
+    [Column(TypeName = "varchar(20)")]
     public string? Phone { get; set; }
 
     /// <summary>
@@ -90,7 +100,7 @@ public class User
     /// <summary>
     /// 扩展信息（JSON格式）
     /// </summary>
-    [Column(TypeName = "json")] 
+    [Column(TypeName = "json")]
     public JsonNode? Extend { get; set; }
 
     /// <summary>

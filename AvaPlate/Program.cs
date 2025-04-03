@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using System;
 using Avalonia.Logging;
+using Avalonia.ReactiveUI;
 
 namespace AvaPlate;
 
@@ -17,6 +18,7 @@ internal static class Program
     private static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
+            .UseReactiveUI()
             .WithInterFont()
             .LogToTrace(LogEventLevel.Debug);
 }

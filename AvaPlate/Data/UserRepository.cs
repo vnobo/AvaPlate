@@ -15,6 +15,7 @@ public class UserRepository(SecurityContext securityContext)
     {
         if (_hasBeenInitialized)
             return;
+        await securityContext.Database.EnsureDeletedAsync();
         await securityContext.Database.EnsureCreatedAsync();
         _hasBeenInitialized = true;
     }

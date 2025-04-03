@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using AvaPlate.Models;
@@ -16,6 +17,7 @@ public class SecurityContext : DbContext
         {
             Directory.CreateDirectory(Constants.AppDirectory);
         }
+
         options.UseSqlite(Constants.DatabasePath)
             .EnableDetailedErrors()
             .EnableSensitiveDataLogging()
@@ -24,6 +26,10 @@ public class SecurityContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<User>()
+            .HasAlternateKey(e => e.Code)
+            .HasName("AK_sys_users_code");
+        
         modelBuilder.Entity<User>()
             .Property(e => e.Extend).HasColumnType("json")
             .HasConversion(v => v!.ToJsonString(Constants.JsonSerializerOptions),
