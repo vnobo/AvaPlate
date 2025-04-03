@@ -12,18 +12,18 @@
         TransparencyLevelHint="AcrylicBlur"
         Background="Transparent"
         ExtendClientAreaToDecorationsHint="True">
-    <Panel Margin="25">
-        <ExperimentalAcrylicBorder IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial
-                    BackgroundSource="Digger"
-                    TintColor="Black"
-                    TintOpacity="1"
-                    MaterialOpacity="0.65" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder>
-        <Button VerticalAlignment="Center" HorizontalAlignment="Center">
-            <PathIcon Data="{StaticResource arrow_sync_circle_regular}" />
-        </Button>
-    </Panel>
+  <Panel Margin="25">
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+            BackgroundSource="Digger"
+            TintColor="Black"
+            TintOpacity="1"
+            MaterialOpacity="0.65" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <Button VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding RefreshCommand}">
+      <PathIcon Data="{StaticResource arrow_sync_circle_regular}" />
+    </Button>
+  </Panel>
 </Window>

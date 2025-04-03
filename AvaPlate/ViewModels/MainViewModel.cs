@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Avalonia.Logging;
 using AvaPlate.Data;
 using AvaPlate.Models;
 using AvaPlate.Services;
@@ -34,6 +35,7 @@ public partial class MainViewModel(UserRepository userRepository, ModalErrorHand
         {
             IsRefreshing = true;
             await LoadData();
+            Logger.TryGet(LogEventLevel.Debug, LogArea.Control)?.Log(this, "正在执行 Refresh 方法");
         }
         catch (Exception e)
         {

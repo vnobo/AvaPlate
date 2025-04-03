@@ -20,5 +20,5 @@ internal static class Program
             .UsePlatformDetect()
             .UseReactiveUI()
             .WithInterFont()
-            .LogToTrace(LogEventLevel.Debug);
+            .LogToTrace(LogEventLevel.Debug, LogArea.Property, LogArea.Layout);
 }
